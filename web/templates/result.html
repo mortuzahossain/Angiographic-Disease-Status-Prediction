@@ -1,0 +1,22 @@
+{% include "header.html" %}
+
+    <div class="container">
+      <div class="py-5 text-center">
+        {% if result >= 1 %}
+            <h1>PREDICTED RESULT : > 50% diameter narrowing</h1>
+        {% else %}
+            <h1>PREDICTED RESULT : < 50% diameter narrowing</h1>
+        {% endif %}
+
+        {% if actualresult != -1 %}
+            {% if result >= 1 %}
+                <h1>PREDICTED RESULT : > 50% diameter narrowing</h1>
+            {% else %}
+                <h1>PREDICTED RESULT : < 50% diameter narrowing</h1>
+            {% endif %}
+        {% endif %}
+
+    </div>
+    </div>
+
+{% include "footer.html" %}

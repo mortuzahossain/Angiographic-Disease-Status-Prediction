@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Angiographic Disease Status Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
+  </head>
+  <body class="bg-light">
+
+    <header class="container">
+      <div class="py-3 text-center">
+        <img class="d-block mx-auto mb-4" src="../static/icon/prediction.svg" alt="" width="120" height="120">
+        <h2>Angiographic Disease Status Prediction</h2>
+      </div>
+    </header>
+
+    <div class="container main">
+      <form action="{{ url_for('index') }}" method="POST">
+        <div class="form-group">
+          <label for="age" class="bmd-label-floating">Age</label>
+          <input type="number" class="form-control" id="age" name="age" step="1" min="0" required>
+        </div>
+
+        <div class="form-group">
+          <label for="sexoptradio" class="bmd-label-floating"></label>SEX :
+          <label class="radio-inline"><input type="radio" name="sexoptradio" value = "1" required>Male</label>
+          <label class="radio-inline"><input type="radio" name="sexoptradio" value = "0" required>Female</label>
+        </div>
+
+        <div class="form-group">
+          <label for="cp" class="bmd-label-floating">Chest Pain Type</label>
+          <select class="form-control" id="cp" name="cp" required>
+            <option value="1">Typical angina</option>
+            <option value="2">Atypical angina</option>
+            <option value="3">Non-atypical angina</option>
+            <option value="4">Asymptomatic</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="testbps" class="bmd-label-floating">Resting blood pressure</label>
+          <input type="number" class="form-control" id="testbps" name="testbps" step="0.01" min="0" required>
+        </div>
+
+        <div class="form-group">
+          <label for="chol" class="bmd-label-floating">Serum cholesterol in mg/dl</label>
+          <input type="number" class="form-control" id="chol" name="chol" step="0.01" min="0" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fbs" class="bmd-label-floating"></label>Fasting blood sugar :
+          <label class="radio-inline"><input type="radio" name="fbs" value = "1" required> > 120 mg/dl</label>
+          <label class="radio-inline"><input type="radio" name="fbs" value = "0" required> < 120 mg/dl</label>
+        </div>
+
+        <div class="form-group">
+          <label for="restecg" class="bmd-label-floating">Resting Electrocardiographic Results</label>
+          <select class="form-control" id="restecg" name="restecg" required>
+            <option value="0">Normal</option>
+            <option value="1">Having ST-T wave abnormality</option>
+            <option value="2">Showing probable or definite left ventricular hypertrophy by Estes' criteria</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="thalach" class="bmd-label-floating">Maximum heart rate achieved</label>
+          <input type="number" class="form-control" id="thalach" name="thalach" step="0.01" min="0" required>
+        </div>
+
+        <div class="form-group">
+          <label for="exang" class="bmd-label-floating"></label>Exang :
+          <label class="radio-inline"><input type="radio" name="exang" value = "0" required>No</label>
+          <label class="radio-inline"><input type="radio" name="exang" value = "1" required>Yes</label>
+        </div>
+
+        <div class="form-group">
+          <label for="oldpeak" class="bmd-label-floating">ST depression induced by exercise relative to rest</label>
+          <input type="number" class="form-control" id="oldpeak" name="oldpeak" step="0.01" min="0" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="slope" class="bmd-label-floating">Slope of the peak exercise ST segment</label>
+          <select class="form-control" id="slope" name="slope" required>
+            <option value="1">Upsloping</option>
+            <option value="2">Flat</option>
+            <option value="3">Down sloping</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ca" class="bmd-label-floating"></label>Number of major vessels (0-3) colored by fluoroscopy: <br>
+          <label class="radio-inline"><input type="radio" name="ca" value = "0" required>0</label>
+          <label class="radio-inline"><input type="radio" name="ca" value = "1" required>1</label>
+          <label class="radio-inline"><input type="radio" name="ca" value = "2" required>2</label>
+          <label class="radio-inline"><input type="radio" name="ca" value = "3" required>3</label>
+        </div>
+
+        <div class="form-group">
+          <label for="thal" class="bmd-label-floating">Thal</label>
+          <select class="form-control" id="thal" name="thal" required>
+            <option value="3">Normal</option>
+            <option value="6">Fixed defect</option>
+            <option value="7">reversabledefect</option>
+          </select>
+        </div>
+
+        <button class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-raised">Submit</button>
+      </form>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <hr>
+      <p class="mb-1">&copy; {{year}} @Mortuza Hossain</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="/api/" target=”_blank”>API</a></li>
+        <li class="list-inline-item"><a href="#">About</a></li>
+        <li class="list-inline-item"><a href="#">Contact</a></li>
+      </ul>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+  </body>
+</html>
